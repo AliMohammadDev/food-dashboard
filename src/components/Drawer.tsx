@@ -54,7 +54,7 @@ const Drawer = ({ children }: { children: ReactNode }) => {
               }}
               className={({ isActive }) =>
                 clsx(
-                  "flex w-full items-center gap-2 rounded p-2 hover:bg-gray-100",
+                  "flex w-full items-center  gap-2 rounded p-2 hover:bg-gray-100",
                   isActive ? "bg-gray-100" : "",
                 )
               }
