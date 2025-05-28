@@ -7,7 +7,8 @@ import { Link, NavLink } from "react-router-dom";
 import Header from "./Header";
 import logo from "../assets/images/logo.png";
 import MenuIcon from "./MenuIcon.tsx";
-import CategoriesIcon from "../assets/icons/Categoryicon.tsx";
+import OrderIcon from "../assets/icons/OrderIcon.tsx";
+import CategoriesIcon from "../assets/icons/CategoryIcon.tsx";
 
 type DrawerItem = {
   name: string;
@@ -18,6 +19,7 @@ const items: DrawerItem[] = [
   { name: "Home", url: "/", icon: <HomeIcon /> },
   { name: "Categories", url: "/categories", icon: <CategoriesIcon /> },
   { name: "Items", url: "/items", icon: <MenuIcon /> },
+  { name: "Orders", url: "/orders", icon: <OrderIcon /> },
   { name: "Logout", url: "/logout", icon: <LogoutIcon /> },
 ];
 const Drawer = ({ children }: { children: ReactNode }) => {
@@ -41,7 +43,7 @@ const Drawer = ({ children }: { children: ReactNode }) => {
         </button>
         <div className="flex h-svh flex-col overflow-y-auto p-4">
           <Link to="/" className="mb-4 flex h-12 items-center">
-            <img src={logo} alt="logo" className="h-12" />
+            <img src={logo} alt="logo" className="" />
           </Link>
           {items.map((item) => (
             <NavLink

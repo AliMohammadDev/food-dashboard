@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import Category from "../pages/Categories";
 import Item from "../pages/Items";
 import ErrorFallback from "../pages/ErrorFallback";
+import Order from "../pages/Order";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,11 @@ const router = createBrowserRouter([
       {
         path: "items",
         element: <Item />,
+      },
+
+         {
+        path: "orders",
+        element: <Order />,
       },
     ],
   },
