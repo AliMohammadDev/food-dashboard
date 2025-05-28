@@ -5,6 +5,8 @@ import Category from "../pages/Categories";
 import Item from "../pages/Items";
 import ErrorFallback from "../pages/ErrorFallback";
 import Order from "../pages/Order";
+import Register from "../pages/auth/Register";
+import Login from "../pages/auth/Login";
 
 const router = createBrowserRouter([
   {
@@ -22,9 +24,17 @@ const router = createBrowserRouter([
         element: <Item />,
       },
 
-         {
+      {
         path: "orders",
         element: <Order />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
       },
     ],
   },
