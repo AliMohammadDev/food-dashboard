@@ -29,8 +29,12 @@ const Order = () => {
                             <td className="px-6 py-4">$25.50</td>
                             <td className="px-6 py-4 text-yellow-600 font-semibold">Preparing</td>
                             <td className="px-6 py-4 text-right">
-                                <DisplayIcon className="w-6 h-6 text-blue-500 inline-block cursor-pointer hover:text-blue-700" />
+                                <button className="inline-flex items-center justify-center w-8 h-8 rounded-full hover:bg-orange-100 transition">
+                                    <DisplayIcon className="w-5 h-5 text-orange-500 hover:text-orange-600" />
+                                </button>
                             </td>
+
+
                         </tr>
                     </tbody>
                 </table>

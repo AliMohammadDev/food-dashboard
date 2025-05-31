@@ -42,10 +42,13 @@ const Category = () => {
                 </td>
                 <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{category.name}</td>
                 <td className="px-6 py-4">{category.slug}</td>
-                <td className="px-6 py-4 text-right space-x-2">
-                  <EditIcon className="w-6 h-6 inline-block text-orange-500 cursor-pointer hover:text-orange-700" />
-                  <DeleteIcon className="w-6 h-6 inline-block text-red-500 cursor-pointer hover:text-red-700" />
+                <td className="px-6 py-4 text-right">
+                  <div className="flex justify-end items-center space-x-2">
+                    <EditIcon className="w-6 h-6 text-orange-500 cursor-pointer hover:text-orange-700" />
+                    <DeleteIcon className="w-6 h-6 text-red-500 cursor-pointer hover:text-red-700" />
+                  </div>
                 </td>
+
 
               </tr>
             ))}

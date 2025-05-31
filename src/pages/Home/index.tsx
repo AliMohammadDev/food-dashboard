@@ -1,3 +1,5 @@
+import DisplayIcon from "../../assets/icons/Display";
+
 const Home = () => {
   return (
     <div className="p-6 space-y-6">
@@ -57,10 +59,11 @@ const Home = () => {
                     </span>
                   </td>
                   <td className="px-4 py-4 text-right">
-                    <a href="#" className="text-sm text-orange-500 font-medium hover:underline">
-                      View
-                    </a>
+                    <button className="inline-flex items-center justify-center w-8 h-8 rounded-full text-orange-500 hover:bg-orange-100 transition">
+                      <DisplayIcon className="w-5 h-5" />
+                    </button>
                   </td>
+
                 </tr>
               ))}
             </tbody>
