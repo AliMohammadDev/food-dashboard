@@ -1,11 +1,12 @@
 import { useGetCategories } from "../../api/category";
 import DeleteIcon from "../../assets/icons/DeleteIcon";
 import EditIcon from "../../assets/icons/EditIcon";
+import Skeleton from "../../components/Skeleton";
 
 const Category = () => {
   const { data: categories, isLoading, error } = useGetCategories();
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Skeleton />;
   if (error) return <div>error happened.</div>;
 
   return (
