@@ -6,6 +6,11 @@ const Item = () => {
 
   return (
     <div>
+      <div className="flex justify-end mb-4">
+        <button className="bg-orange-500 cursor-pointer hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded">
+          + Add Product
+        </button>
+      </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right text-brown-600">
           <caption className="p-5 text-lg font-semibold text-left rtl:text-right text-orange-500 bg-white">

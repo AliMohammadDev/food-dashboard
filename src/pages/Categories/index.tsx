@@ -1,6 +1,19 @@
+import { useGetCategories } from "../../api/category";
+
 const Category = () => {
+  const { data: categories, isLoading, error } = useGetCategories();
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>error happened.</div>;
+
   return (
     <div>
+      <div className="flex justify-end mb-4">
+        <button className="bg-orange-500 cursor-pointer hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded">
+          + Add Category
+        </button>
+      </div>
+
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right text-brown-600">
           <caption className="p-5 text-lg font-semibold text-left rtl:text-right text-orange-500 bg-white">
@@ -12,36 +25,27 @@ const Category = () => {
 
           <thead className="text-xs text-brown-700 uppercase bg-orange-100">
             <tr>
-              <th scope="col" className="px-6 py-3">
-                Product name
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Color
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Category
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Price
-              </th>
-              <th scope="col" className="px-6 py-3">
-                <span className="sr-only">Edit</span>
-              </th>
+              <th scope="col" className="px-6 py-3">Image</th>
+              <th scope="col" className="px-6 py-3">Name</th>
+              <th scope="col" className="px-6 py-3">Slug</th>
+              <th scope="col" className="px-6 py-3 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody>
-            <tr className="bg-white border-b border-gray-200">
-              <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                Apple MacBook Pro 17"
-              </th>
-              <td className="px-6 py-4">Silver</td>
-              <td className="px-6 py-4">Laptop</td>
-              <td className="px-6 py-4">$2999</td>
-              <td className="px-6 py-4 text-right">
-                <a href="#" className="font-medium text-orange-500 hover:underline">Edit</a>
-              </td>
-            </tr>
 
+          <tbody>
+            {categories?.map((category) => (
+              <tr key={category.id} className="bg-white border-b border-gray-200 hover:bg-amber-100">
+                <td className="px-6 py-4">
+                  <img src={category.image} alt={category.name} className="w-16 h-16 object-cover rounded" />
+                </td>
+                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{category.name}</td>
+                <td className="px-6 py-4">{category.slug}</td>
+                <td className="px-6 py-4 text-right space-x-2">
+                  <button className="text-orange-500 hover:underline">Edit</button>
+                  <button className="text-red-500 hover:underline">Delete</button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
