@@ -1,3 +1,5 @@
+import DisplayIcon from "../../assets/icons/Display";
+
 const Order = () => {
 
     return (
@@ -27,10 +29,9 @@ const Order = () => {
                             <td className="px-6 py-4">$25.50</td>
                             <td className="px-6 py-4 text-yellow-600 font-semibold">Preparing</td>
                             <td className="px-6 py-4 text-right">
-                                <a href="#" className="font-medium text-blue-600 hover:underline">View</a>
+                                <DisplayIcon className="w-6 h-6 text-blue-500 inline-block cursor-pointer hover:text-blue-700" />
                             </td>
                         </tr>
-
                     </tbody>
                 </table>
             </div>

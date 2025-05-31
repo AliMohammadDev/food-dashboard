@@ -1,4 +1,6 @@
 import { useGetCategories } from "../../api/category";
+import DeleteIcon from "../../assets/icons/DeleteIcon";
+import EditIcon from "../../assets/icons/EditIcon";
 
 const Category = () => {
   const { data: categories, isLoading, error } = useGetCategories();
@@ -34,16 +36,17 @@ const Category = () => {
 
           <tbody>
             {categories?.map((category) => (
-              <tr key={category.id} className="bg-white border-b border-gray-200 hover:bg-amber-100">
+              <tr key={category.id} className="bg-white border-b border-gray-200 hover:bg-amber-50">
                 <td className="px-6 py-4">
                   <img src={category.image} alt={category.name} className="w-16 h-16 object-cover rounded" />
                 </td>
                 <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{category.name}</td>
                 <td className="px-6 py-4">{category.slug}</td>
                 <td className="px-6 py-4 text-right space-x-2">
-                  <button className="text-orange-500 hover:underline">Edit</button>
-                  <button className="text-red-500 hover:underline">Delete</button>
+                  <EditIcon className="w-6 h-6 inline-block text-orange-500 cursor-pointer hover:text-orange-700" />
+                  <DeleteIcon className="w-6 h-6 inline-block text-red-500 cursor-pointer hover:text-red-700" />
                 </td>
+
               </tr>
             ))}
           </tbody>

@@ -1,3 +1,5 @@
+import DeleteIcon from "../../assets/icons/DeleteIcon";
+import EditIcon from "../../assets/icons/EditIcon";
 
 
 
@@ -36,8 +38,9 @@ const Item = () => {
               <td className="px-6 py-4">Pizza</td>
               <td className="px-6 py-4">$12.99</td>
               <td className="px-6 py-4 text-green-600 font-semibold">Available</td>
-              <td className="px-6 py-4 text-right">
-                <a href="#" className="font-medium text-orange-500 hover:underline">Edit</a>
+              <td className="px-6 py-4 text-right space-x-2">
+                <EditIcon className="w-6 h-6 inline-block text-orange-500 cursor-pointer hover:text-orange-700" />
+                <DeleteIcon className="w-6 h-6 inline-block text-red-500 cursor-pointer hover:text-red-700" />
               </td>
             </tr>
 
