@@ -38,7 +38,7 @@ const Category = () => {
       <AddCategoryModal />
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right text-brown-600">
-          <thead className="text-xs text-brown-700 uppercase bg-orange-100">
+          <thead className="text-xs text-gray-800 uppercase bg-orange-100">
             <tr>
               <th scope="col" className="px-6 py-3">Image</th>
               <th scope="col" className="px-6 py-3">Name</th>
@@ -57,7 +57,7 @@ const Category = () => {
                       className="w-16 h-16 object-cover rounded"
                     />
                   </td>
-                  <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{category.name}</td>
+                  <td className="px-6 py-4 font-medium text-gray-800 whitespace-nowrap">{category.name}</td>
                   <td className="px-6 py-4 text-right">
                     <div className="flex justify-end items-center space-x-2">
                       <EditIcon

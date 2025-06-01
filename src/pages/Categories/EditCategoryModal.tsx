@@ -47,7 +47,7 @@ const EditCategoryModal = ({ category }: Props) => {
         <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
           <input type="hidden" {...register("id")} />
           <label className="form-control w-full">
-            <span className="label-text mb-1 font-medium text-brown-700">Category Name</span>
+            <span className="label-text mb-1 font-medium text-gray-700">Category Name</span>
             <input
               type="text"
               placeholder="Enter category name"
@@ -59,7 +59,7 @@ const EditCategoryModal = ({ category }: Props) => {
           </label>
 
           <label className="form-control w-full">
-            <span className="label-text mb-1 font-medium text-brown-700">Image</span>
+            <span className="label-text mb-1 font-medium text-gray-700">Image</span>
             <input
               type="file"
               {...register("image")}
