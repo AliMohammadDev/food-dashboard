@@ -65,7 +65,9 @@ export const useEditCategory = (onSuccess?: (data: CategoryResponse) => void,
       try {
         const formData = new FormData();
         formData.append("name", data.name);
-        formData.append("image", data.image[0]);
+        if (data.image && data.image.length > 0) {
+          formData.append("image", data.image[0]);
+        }
         const res = await axios.put<CategoryResponse>(`categories/${data.id}`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",

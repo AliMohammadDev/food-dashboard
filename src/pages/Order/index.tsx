@@ -12,7 +12,7 @@ const Order = () => {
                             Track and manage all incoming food orders. Monitor statuses, update order progress, and ensure timely delivery for a better customer experience.
                         </p>
                     </caption>
-                    <thead className="text-xs text-gray-800 text-left rtl:text-right uppercase bg-orange-100">                        <tr>
+                    <thead className="text-xs text-gray-800 text-left rtl:text-right capitalize  bg-orange-100">                        <tr>
                         <th scope="col" className="px-6 py-3">Order ID</th>
                         <th scope="col" className="px-6 py-3">Customer Name</th>
                         <th scope="col" className="px-6 py-3">Items</th>

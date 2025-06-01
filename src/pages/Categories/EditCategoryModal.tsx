@@ -70,7 +70,7 @@ const EditCategoryModal = ({ category }: Props) => {
               <img
                 src={category.image}
                 alt={category.name}
-                className="w-20 h-20 object-cover rounded mb-2"
+                className="w-20 h-20 object-cover rounded mt-2"
               />
             )}
 

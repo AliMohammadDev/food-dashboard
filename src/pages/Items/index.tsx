@@ -21,7 +21,7 @@ const Item = () => {
               Manage all food and drink items offered in the restaurant. Update prices, availability, and categories as needed to keep your menu current.
             </p>
           </caption>
-          <thead className="text-xs text-gray-800 uppercase bg-orange-100">
+          <thead className="text-xs text-gray-800 capitalize  bg-orange-100">
             <tr>
               <th scope="col" className="px-6 py-3">Product Name</th>
               <th scope="col" className="px-6 py-3">Category</th>
