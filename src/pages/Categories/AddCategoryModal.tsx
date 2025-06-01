@@ -56,14 +56,13 @@ const AddCategoryModal = () => {
           <div className="flex justify-end pt-2">
             <button
               type="submit"
-              className="btn bg-orange-500 hover:bg-orange-600 text-white font-semibold"
+              className="btn bg-orange-500 shadow-md transition duration-300 ease-in-out hover:bg-orange-600 hover:scale-105 text-white font-semibold"
             >
               {isLoading ? "Adding..." : "Add Category"}
             </button>
           </div>
         </form>
       </div>
-
       <form method="dialog" className="modal-backdrop">
         <button>close</button>
       </form>

@@ -30,7 +30,7 @@ const Category = () => {
               .querySelector<HTMLDialogElement>(".add-category-modal")
               ?.showModal();
           }}
-          className="bg-orange-500 cursor-pointer hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded"
+          className="bg-orange-500 cursor-pointer hover:bg-orange-600 shadow-md transition duration-300 ease-in-out  hover:scale-105 text-white font-semibold py-2 px-4 rounded"
         >
           + Add Category
         </button>
