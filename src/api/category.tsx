@@ -28,7 +28,6 @@ export const useGetCategories = () => {
 
 export const useAddCategory = (onSuccess?: (data: CategoryResponse) => void) => {
   const queryClient = useQueryClient();
-
   const mutation = useMutation<CategoryResponse, AxiosError<{ server_error: string }>, CategoryInput>({
     mutationFn: async (data: CategoryInput) => {
       try {
@@ -57,3 +56,59 @@ export const useAddCategory = (onSuccess?: (data: CategoryResponse) => void) => 
   return mutation;
 };
 
+export const useEditCategory = (onSuccess?: (data: CategoryResponse) => void,
+  onError?: () => void,) => {
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation<CategoryResponse, AxiosError<{ server_error: string }>, CategoryInput>({
+    mutationFn: async (data: CategoryInput) => {
+      try {
+        const formData = new FormData();
+        formData.append("name", data.name);
+        formData.append("image", data.image[0]);
+        const res = await axios.put<CategoryResponse>(`categories/${data.id}`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        return res.data;
+      }
+      catch (error) {
+        const err = error as AxiosError<{ server_error: string }>;
+        const message = err.response?.data.server_error;
+        throw new Error(message || "there was an error");
+      }
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["category"] });
+      if (onSuccess) onSuccess(data);
+    },
+    onError: () => {
+      if (onError) onError();
+    }
+  });
+
+  return mutation;
+}
+
+export const useDeleteCategory = (onSuccess?: (data: CategoryResponse) => void) => {
+  const queryClient = useQueryClient();
+  const mutation = useMutation<CategoryResponse, AxiosError<{ server_error: string }>, string>({
+    mutationFn: async (id: string) => {
+      try {
+        const res = await axios.delete<CategoryResponse>(`categories/${id}`);
+        return res.data;
+      }
+      catch (error) {
+        const err = error as AxiosError<{ server_error: string }>;
+        const message = err.response?.data.server_error;
+        throw new Error(message || "there was an error");
+      }
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["category"] });
+      if (onSuccess) onSuccess(data);
+    },
+  });
+  return mutation;
+}
