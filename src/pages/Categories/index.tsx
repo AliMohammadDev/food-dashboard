@@ -36,8 +36,6 @@ const Category = () => {
 
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right text-brown-600">
-
-
           <thead className="text-xs text-brown-700 uppercase bg-orange-100">
             <tr>
               <th scope="col" className="px-6 py-3">Image</th>
@@ -47,29 +45,41 @@ const Category = () => {
           </thead>
 
           <tbody>
-            {categories?.map((category) => (
-              <tr key={category.id} className="bg-white border-b border-gray-200 hover:bg-amber-50">
-                <td className="px-6 py-4">
-                  <img src={category.image} alt={category.name} className="w-16 h-16 object-cover rounded" />
-                </td>
-                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{category.name}</td>
-                <td className="px-6 py-4 text-right">
-                  <div className="flex justify-end items-center space-x-2">
-                    <EditIcon className="w-6 h-6 text-orange-500 cursor-pointer hover:text-orange-700" />
-                    <DeleteIcon
-                      onClick={() => {
-                        document
-                          .querySelector<HTMLDialogElement>("delete-category-modal")
-                          ?.showModal();
-                      }}
-
-                      className="w-6 h-6 text-red-500 cursor-pointer hover:text-red-700"
+            {categories && categories.length > 0 ? (
+              categories.map((category) => (
+                <tr key={category.id} className="bg-white border-b border-gray-200 hover:bg-amber-50">
+                  <td className="px-6 py-4">
+                    <img
+                      src={category.image}
+                      alt={category.name}
+                      className="w-16 h-16 object-cover rounded"
                     />
-                  </div>
+                  </td>
+                  <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{category.name}</td>
+                  <td className="px-6 py-4 text-right">
+                    <div className="flex justify-end items-center space-x-2">
+                      <EditIcon className="w-6 h-6 text-orange-500 cursor-pointer hover:text-orange-700" />
+                      <DeleteIcon
+                        onClick={() => {
+                          document
+                            .querySelector<HTMLDialogElement>("delete-category-modal")
+                            ?.showModal();
+                        }}
+                        className="w-6 h-6 text-red-500 cursor-pointer hover:text-red-700"
+                      />
+                    </div>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={3} className="text-center py-10 text-gray-500 text-lg">
+                  There is no data.
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
+
         </table>
       </div>
     </div>

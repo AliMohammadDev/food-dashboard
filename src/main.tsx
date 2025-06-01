@@ -10,7 +10,7 @@ import { Toaster } from "react-hot-toast";
 
 
 axios.defaults.baseURL =
-  import.meta.env.VITE_API || "https://127.0.0.1/api/v1";
+  import.meta.env.VITE_API || "http://localhost:3000/api/v1";
 axios.defaults.headers.common.Authorization = "Bearer " + Cookie().get("token");
 
 const queryClient = new QueryClient({
