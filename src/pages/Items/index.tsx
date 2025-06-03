@@ -29,7 +29,7 @@ const Item = () => {
               .querySelector<HTMLDialogElement>(".add-item-modal")
               ?.showModal();
           }}
-          className="bg-orange-500 cursor-pointer hover:bg-orange-600 shadow-md transition duration-300 ease-in-out hover:scale-105 text-white font-semibold py-2 px-4 rounded"
+          className="bg-amber-600 hover:bg-amber-600 cursor-pointer shadow-md transition-all duration-300 hover:scale-105 text-white font-semibold py-2 px-4 rounded-lg"
         >
           + Add Item
         </button>
@@ -40,7 +40,7 @@ const Item = () => {
 
       <div className="relative overflow-x-auto shadow-md rounded-xl border border-orange-200 bg-white">
         <table className="w-full text-sm text-left text-gray-700">
-          <thead className="text-xs uppercase bg-orange-500 text-white">
+          <thead className="text-xs uppercase bg-amber-600 text-white">
             <tr>
               <th scope="col" className="px-6 py-3">Image</th>
               <th scope="col" className="px-6 py-3">Product Name</th>

@@ -27,7 +27,7 @@ const Category = () => {
           onClick={() => {
             document.querySelector<HTMLDialogElement>(".add-category-modal")?.showModal();
           }}
-          className="bg-orange-500 hover:bg-orange-600 cursor-pointer shadow-md transition-all duration-300 hover:scale-105 text-white font-semibold py-2 px-4 rounded-lg"
+          className="bg-amber-600 hover:bg-amber-600 cursor-pointer shadow-md transition-all duration-300 hover:scale-105 text-white font-semibold py-2 px-4 rounded-lg"
         >
           + Add Category
         </button>
@@ -37,10 +37,11 @@ const Category = () => {
 
       <div className="relative overflow-x-auto shadow-md rounded-xl border border-orange-200 bg-white">
         <table className="w-full text-sm text-left text-gray-700">
-          <thead className="text-xs uppercase bg-orange-500 text-white">
+          <thead className="text-xs uppercase bg-amber-600 text-white">
             <tr>
               <th scope="col" className="px-6 py-3">Image</th>
               <th scope="col" className="px-6 py-3">Name</th>
+              <th scope="col" className="px-6 py-3">Created At</th>
               <th scope="col" className="px-6 py-3 text-right">Actions</th>
             </tr>
           </thead>
@@ -59,6 +60,9 @@ const Category = () => {
 
                   <td className="px-6 py-4 font-medium text-gray-800 whitespace-nowrap">
                     {category.name}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-600 text-sm">
+                    {new Date(category.createdAt).toLocaleDateString()} 
                   </td>
 
                   <td className="px-6 py-4 text-right">

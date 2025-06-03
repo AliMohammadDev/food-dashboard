@@ -7,6 +7,7 @@ export type CategoryInput = {
   id: string;
   name: string;
   image: FileList;
+  createdAt: string;
 }
 export type CategoryResponse = {
   data: CategoryInput[];
