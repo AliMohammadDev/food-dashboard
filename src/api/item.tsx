@@ -7,7 +7,7 @@ export type ItemInput = {
   id: string;
   name: string;
   image: FileList;
-  categoryId:string;
+  category: number | { id: number; name: string };
 }
 export type ItemResponse = {
   data: ItemInput[];
@@ -18,7 +18,7 @@ export type ItemResponse = {
 
 export const useGetItems = () => {
   const query = useQuery({
-    queryKey: ['category'],
+    queryKey: ['item'],
     queryFn: async () => {
       const res = await axios.get<ItemResponse>('items');
       return res.data.data;
@@ -34,7 +34,10 @@ export const useAddItem = (onSuccess?: (data: ItemResponse) => void) => {
       try {
         const formData = new FormData();
         formData.append("name", data.name);
+        formData.append("category", `${data.category}`);
+
         formData.append("image", data.image[0]);
+
         const res = await axios.post<ItemResponse>("items", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -49,7 +52,7 @@ export const useAddItem = (onSuccess?: (data: ItemResponse) => void) => {
       }
     },
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ["category"] });
+      queryClient.invalidateQueries({ queryKey: ["item"] });
       if (onSuccess) onSuccess(data);
     },
   });
@@ -57,7 +60,7 @@ export const useAddItem = (onSuccess?: (data: ItemResponse) => void) => {
   return mutation;
 };
 
-export const useEditCategory = (onSuccess?: (data: ItemResponse) => void,
+export const useEditItem = (onSuccess?: (data: ItemResponse) => void,
   onError?: () => void,) => {
   const queryClient = useQueryClient();
 
@@ -66,6 +69,8 @@ export const useEditCategory = (onSuccess?: (data: ItemResponse) => void,
       try {
         const formData = new FormData();
         formData.append("name", data.name);
+        formData.append("category", `${data.category}`);
+
         if (data.image && data.image.length > 0) {
           formData.append("image", data.image[0]);
         }
@@ -83,7 +88,7 @@ export const useEditCategory = (onSuccess?: (data: ItemResponse) => void,
       }
     },
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ["category"] });
+      queryClient.invalidateQueries({ queryKey: ["item"] });
       if (onSuccess) onSuccess(data);
     },
     onError: () => {
@@ -94,7 +99,7 @@ export const useEditCategory = (onSuccess?: (data: ItemResponse) => void,
   return mutation;
 }
 
-export const useDeleteCategory = (onSuccess?: (data: ItemResponse) => void) => {
+export const useDeleteItem = (onSuccess?: (data: ItemResponse) => void) => {
   const queryClient = useQueryClient();
   const mutation = useMutation<ItemResponse, AxiosError<{ server_error: string }>, string>({
     mutationFn: async (id: string) => {
@@ -109,7 +114,7 @@ export const useDeleteCategory = (onSuccess?: (data: ItemResponse) => void) => {
       }
     },
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ["category"] });
+      queryClient.invalidateQueries({ queryKey: ["item"] });
       if (onSuccess) onSuccess(data);
     },
   });

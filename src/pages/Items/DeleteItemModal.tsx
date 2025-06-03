@@ -1,30 +1,29 @@
-import { CategoryInput } from "../../api/category";
-import { useDeleteCategory } from "../../api/category";
 import toast from "react-hot-toast";
+import { ItemInput, useDeleteItem } from "../../api/item";
 
 type Props = {
-  category: CategoryInput | null;
+  item: ItemInput | null;
 };
 
-const DeleteCategoryModal = ({ category }: Props) => {
-  const { mutate, isLoading, error } = useDeleteCategory(() => {
-    document.querySelector<HTMLDialogElement>(".delete-category-modal")?.close();
+const DeleteItemModal = ({ item }: Props) => {
+  const { mutate, isLoading, error } = useDeleteItem(() => {
+    document.querySelector<HTMLDialogElement>(".delete-item-modal")?.close();
     toast.success("Item deleted successfully");
   });
 
   const handleDelete = () => {
-    if (category?.id) {
-      mutate(category.id);
+    if (item?.id) {
+      mutate(item.id);
     }
   };
 
   return (
-    <dialog className="delete-category-modal modal">
+    <dialog className="delete-item-modal modal">
       <div className="modal-box bg-white rounded-2xl shadow-lg w-full max-w-md border border-orange-200">
-        <h3 className="text-lg font-semibold text-red-600 mb-4">Delete Item</h3>
+        <h3 className="text-lg font-semibold text-red-600 mb-4">Delete Category</h3>
         <p className="text-gray-800 mb-4">
-          Are you sure you want to delete the item{" "}
-          <strong className="text-orange-600">{category?.name}</strong>?
+          Are you sure you want to delete the category{" "}
+          <strong className="text-orange-600">{item?.name}</strong>?
         </p>
 
         {error && <p className="text-sm text-error mb-2">{error.message}</p>}
@@ -52,4 +51,4 @@ const DeleteCategoryModal = ({ category }: Props) => {
   );
 };
 
-export default DeleteCategoryModal;
+export default DeleteItemModal;
