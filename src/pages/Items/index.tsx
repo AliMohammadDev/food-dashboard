@@ -100,8 +100,9 @@ const Item = () => {
               ))
             ) : (
               <tr>
-                <td colSpan={4} className="text-center py-10 text-gray-500 text-lg">
-                  There is no data.
+                <td colSpan={3} className="text-center py-10 text-gray-400 text-md">
+                  <p className="text-lg font-medium mb-2">No items found.</p>
+                  <p className="text-sm">Click "Add Item" to create your first one.</p>
                 </td>
               </tr>
             )}
