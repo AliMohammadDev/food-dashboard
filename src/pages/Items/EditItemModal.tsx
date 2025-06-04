@@ -8,16 +8,13 @@ type Props = {
   item: ItemInput | null;
 };
 
-
 const EditItemModal = ({ item }: Props) => {
-
   const { register, handleSubmit, reset } = useForm<ItemInput>();
   const { data: categories, isLoading: isCategoriesLoading } = useGetCategories();
 
-
   const { mutate, isLoading, error } = useEditItem(() => {
     document.querySelector<HTMLDialogElement>(".edit-item-modal")?.close();
-    toast.success("Category updated successfully");
+    toast.success("Item updated successfully");
     reset();
   });
 
@@ -31,6 +28,8 @@ const EditItemModal = ({ item }: Props) => {
         id: item.id,
         name: item.name,
         category: typeof item.category === "object" ? item.category.id : item.category,
+        price: item.price,
+        description: item.description,
         image: undefined,
       });
     }
@@ -50,15 +49,15 @@ const EditItemModal = ({ item }: Props) => {
 
         <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
           <input type="hidden" {...register("id")} />
+
           <label className="form-control w-full">
             <span className="label-text mb-1 font-medium text-gray-700">Item Name</span>
             <input
               type="text"
-              placeholder="Enter category name"
+              placeholder="Enter item name"
               className="input input-bordered w-full border-orange-300 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-400"
               required
               {...register("name", { required: true })}
-
             />
           </label>
 
@@ -76,10 +75,28 @@ const EditItemModal = ({ item }: Props) => {
                 </option>
               ))}
             </select>
-
           </label>
 
+          <label className="form-control w-full">
+            <span className="label-text mb-1 font-medium text-gray-700">Price</span>
+            <input
+              type="number"
+              step="0.01"
+              placeholder="Enter price"
+              className="input input-bordered w-full border-orange-300 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-400"
+              required
+              {...register("price", { required: true, valueAsNumber: true })}
+            />
+          </label>
 
+          <label className="form-control w-full">
+            <span className="label-text mb-1 font-medium text-gray-700">Description</span>
+            <textarea
+              placeholder="Enter description"
+              className="textarea textarea-bordered w-full border-orange-300 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-400"
+              {...register("description")}
+            />
+          </label>
 
           <label className="form-control w-full">
             <span className="label-text mb-1 font-medium text-gray-700">Image</span>
@@ -96,7 +113,6 @@ const EditItemModal = ({ item }: Props) => {
                 className="w-20 h-20 object-cover rounded mt-2"
               />
             )}
-
           </label>
 
           {error && <p className="text-sm text-error">{error.message}</p>}
@@ -116,8 +132,8 @@ const EditItemModal = ({ item }: Props) => {
         <button>close</button>
       </form>
     </dialog>
-  )
-}
-
+  );
+};
 
 export default EditItemModal;
+  

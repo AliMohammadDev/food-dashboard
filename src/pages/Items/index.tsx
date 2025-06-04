@@ -45,6 +45,8 @@ const Item = () => {
               <th scope="col" className="px-6 py-3">Image</th>
               <th scope="col" className="px-6 py-3">Product Name</th>
               <th scope="col" className="px-6 py-3">Category</th>
+              <th scope="col" className="px-6 py-3">Price</th>
+              <th scope="col" className="px-6 py-3">Description</th>
               <th scope="col" className="px-6 py-3 text-right">Actions</th>
             </tr>
           </thead>
@@ -72,6 +74,12 @@ const Item = () => {
                     {typeof item.category === "object" && item.category !== null
                       ? item.category.name
                       : "—"}
+                  </td>
+                  <td className="px-6 py-4 font-medium text-gray-800 whitespace-nowrap">
+                    {item.price}$
+                  </td>
+                  <td className="px-6 py-4 font-medium text-gray-800 whitespace-nowrap">
+                    {item.description}
                   </td>
 
                   <td className="px-6 py-4 text-right">

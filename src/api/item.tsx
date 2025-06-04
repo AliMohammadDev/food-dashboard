@@ -7,7 +7,9 @@ export type ItemInput = {
   id: string;
   name: string;
   image: FileList;
+  price: string;
   category: number | { id: number; name: string };
+  description: string;
 }
 export type ItemResponse = {
   data: ItemInput[];
@@ -35,7 +37,8 @@ export const useAddItem = (onSuccess?: (data: ItemResponse) => void) => {
         const formData = new FormData();
         formData.append("name", data.name);
         formData.append("category", `${data.category}`);
-
+        formData.append("price", data.price);
+        formData.append("description", data.description);
         formData.append("image", data.image[0]);
 
         const res = await axios.post<ItemResponse>("items", formData, {
@@ -70,10 +73,11 @@ export const useEditItem = (onSuccess?: (data: ItemResponse) => void,
         const formData = new FormData();
         formData.append("name", data.name);
         formData.append("category", `${data.category}`);
-
         if (data.image && data.image.length > 0) {
           formData.append("image", data.image[0]);
         }
+        formData.append("price", data.price);
+        formData.append("description", data.description);
         const res = await axios.put<ItemResponse>(`items/${data.id}`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
