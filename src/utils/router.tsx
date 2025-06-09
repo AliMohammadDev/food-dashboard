@@ -7,6 +7,7 @@ import ErrorFallback from "../pages/ErrorFallback";
 import Order from "../pages/Order";
 import Register from "../pages/auth/Register";
 import Login from "../pages/auth/Login";
+import Logout from "../pages/Logout";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/logout",
+    element: <Logout />,
   },
   {
     path: "/register",
