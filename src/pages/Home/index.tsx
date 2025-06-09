@@ -1,10 +1,21 @@
 import DisplayIcon from "../../assets/icons/Display";
+import BlurText from "../../components/common/BlurText";
 
 const Home = () => {
   return (
     <div className="p-6 space-y-6">
       {/* Page Title */}
-      <h1 className="text-2xl font-bold text-orange-500">Welcome to the Dashboard 👋</h1>
+
+      <BlurText
+        text="Welcome to the Dashboard 👋"
+        delay={150}
+        animateBy="words"
+        direction="top"
+        className="text-2xl font-bold text-orange-500"
+      />
+
+
+
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
@@ -45,7 +56,7 @@ const Home = () => {
                 { id: '#1023', customer: 'Ahmed', total: '$23.00', status: 'In Progress', color: 'bg-yellow-100 text-yellow-800' },
                 { id: '#1022', customer: 'Sarah', total: '$42.50', status: 'Delivered', color: 'bg-green-100 text-green-800' },
                 { id: '#1021', customer: 'Mohammed', total: '$15.25', status: 'Cancelled', color: 'bg-red-100 text-red-800' },
-              ].map((order, i) => (
+              ].map((order) => (
                 <tr
                   key={order.id}
                   className="hover:bg-gray-50 transition rounded-xl"
