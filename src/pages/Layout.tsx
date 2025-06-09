@@ -1,8 +1,22 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Drawer from "../components/Drawer";
+import { useEffect } from "react";
+import { useGetProfile } from "../api/auth";
 
 const Layout = () => {
-  return (
+
+  const { data: profile, isLoading } = useGetProfile();
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!profile && !isLoading) {
+      navigate("/login");
+    }
+  }, [isLoading, navigate, profile]);
+
+  return isLoading ? (
+    <span>loading...</span>
+  ) : (
     <Drawer>
       <Outlet />
     </Drawer>
