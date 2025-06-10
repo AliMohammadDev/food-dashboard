@@ -10,9 +10,17 @@ import DeleteCategoryModal from "./DeleteCategoryModal";
 const Category = () => {
   const { data: categories, isLoading, error } = useGetCategories();
   const [selectedCategory, setSelectedCategory] = useState<CategoryInput | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
   if (isLoading) return <Skeleton />;
   if (error) return <div className="text-red-500">An error occurred while loading categories.</div>;
+
+  const totalPages = categories ? Math.ceil(categories.length / itemsPerPage) : 1;
+
+  const paginatedCategories = categories
+    ? categories.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+    : [];
 
   return (
     <div className="px-4 md:px-8 py-6">
@@ -47,8 +55,8 @@ const Category = () => {
           </thead>
 
           <tbody>
-            {categories && categories.length > 0 ? (
-              categories.map((category) => (
+            {paginatedCategories.length > 0 ? (
+              paginatedCategories.map((category) => (
                 <tr key={category.id} className="border-b border-gray-200 hover:bg-orange-50 transition-all">
                   <td className="px-6 py-4">
                     <img
@@ -62,7 +70,7 @@ const Category = () => {
                     {category.name}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-gray-600 text-sm">
-                    {new Date(category.createdAt).toLocaleDateString()} 
+                    {new Date(category.createdAt).toLocaleDateString()}
                   </td>
 
                   <td className="px-6 py-4 text-right">
@@ -87,7 +95,7 @@ const Category = () => {
               ))
             ) : (
               <tr>
-                <td colSpan={3} className="text-center py-10 text-gray-400 text-md">
+                <td colSpan={4} className="text-center py-10 text-gray-400 text-md">
                   <p className="text-lg font-medium mb-2">No categories found.</p>
                   <p className="text-sm">Click "Add Category" to create your first one.</p>
                 </td>
@@ -96,6 +104,44 @@ const Category = () => {
           </tbody>
         </table>
       </div>
+
+      {/* Pagination */}
+      <nav className="flex justify-end mt-6" aria-label="Page navigation example">
+        <ul className="inline-flex -space-x-px text-base h-10 font-semibold">
+          <li>
+            <button
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+              className="flex items-center justify-center px-5 h-10 ms-0 leading-tight text-orange-600 bg-white border border-e-0 border-orange-400 rounded-s-lg hover:bg-orange-100 hover:text-orange-800 disabled:opacity-50 disabled:cursor-not-allowed transition"
+            >
+              Previous
+            </button>
+          </li>
+          {[...Array(totalPages)].map((_, index) => (
+            <li key={index}>
+              <button
+                onClick={() => setCurrentPage(index + 1)}
+                className={`flex items-center justify-center px-5 h-10 leading-tight border ${currentPage === index + 1
+                  ? "text-white bg-orange-600 border-orange-600"
+                  : "text-orange-600 bg-white border-orange-400 hover:bg-orange-100 hover:text-orange-800"
+                  } rounded-none transition`}
+              >
+                {index + 1}
+              </button>
+            </li>
+          ))}
+          <li>
+            <button
+              onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              className="flex items-center justify-center px-5 h-10 leading-tight text-orange-600 bg-white border border-orange-400 rounded-e-lg hover:bg-orange-100 hover:text-orange-800 disabled:opacity-50 disabled:cursor-not-allowed transition"
+            >
+              Next
+            </button>
+          </li>
+        </ul>
+      </nav>
+
 
       <EditCategoryModal category={selectedCategory} />
       <DeleteCategoryModal category={selectedCategory} />
