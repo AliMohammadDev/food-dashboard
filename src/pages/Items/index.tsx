@@ -147,7 +147,7 @@ const Item = () => {
             <li key={index}>
               <button
                 onClick={() => setCurrentPage(index + 1)}
-                className={`flex items-center justify-center px-5 h-10 leading-tight border ${currentPage === index + 1
+                className={`flex items-center justify-center cursor-pointer px-5 h-10 leading-tight border ${currentPage === index + 1
                   ? "text-white bg-orange-600 border-orange-600"
                   : "text-orange-600 bg-white border-orange-400 hover:bg-orange-100 hover:text-orange-800"
                   } rounded-none transition`}
@@ -160,7 +160,7 @@ const Item = () => {
             <button
               onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
               disabled={currentPage === totalPages}
-              className="flex items-center justify-center px-5 h-10 leading-tight text-orange-600 bg-white border border-orange-400 rounded-e-lg hover:bg-orange-100 hover:text-orange-800 disabled:opacity-50 disabled:cursor-not-allowed transition"
+              className="flex items-center justify-center px-5 h-10 cursor-pointer leading-tight text-orange-600 bg-white border border-orange-400 rounded-e-lg hover:bg-orange-100 hover:text-orange-800 disabled:opacity-50 disabled:cursor-not-allowed transition"
             >
               Next
             </button>
