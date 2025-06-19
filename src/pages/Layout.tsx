@@ -9,8 +9,10 @@ const Layout = () => {
 
   const navigate = useNavigate();
   useEffect(() => {
-    if (!profile && !isLoading) {
-      navigate("/login");
+    if (!isLoading) {
+      if (!profile || profile.role !== "admin") {
+        navigate("/login");
+      }
     }
   }, [isLoading, navigate, profile]);
 
